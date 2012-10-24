@@ -1,0 +1,116 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+
+<div class="content-box-header">
+    <h3>分析查看</h3>
+    <div class="clear"></div>
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+
+<form action="?m=Analytics&a=index" method="post" name="searchform">
+
+平台:
+	<select name="platform">
+		<option value ="0" <if	condition="$_REQUEST['platform'] eq 0">selected</if>></option>
+  		<option value ="1" <if	condition="$_REQUEST['platform'] eq 1">selected</if>>IOS</option>
+  		<option value ="2" <if	condition="$_REQUEST['platform'] eq 2">selected</if>>android</option>
+	</select>
+
+运营厂商:
+	<select name="carrier">
+		<option value ="0"  <if	condition="$_REQUEST['carrier'] eq 0">selected</if>> </option>
+  		<option value ="中国电信" <if condition="$_REQUEST['carrier'] eq '中国电信'">selected</if>>中国电信</option>
+  		<option value ="未知" <if condition="$_REQUEST['carrier'] eq '未知'">selected</if>>未知</option>
+	</select>
+
+充值金额 >
+	<input type='text' id=amount name="amount" value=""/>
+	
+<!--提交按钮-->	
+	<input class="button" type="submit" value="Submit" />
+	
+</form>
+
+<table width="100%">
+<thead>
+    <tr>
+       <th width="5%">ID</th>
+       <th width="5%">udid</th>
+	   <th width="5%">channelId</th>
+	   <th width="10%">channelName</th>
+	   <th width="10%">appKey</th>
+       <th width="10%">packageName</th>	   
+       <th width="5%">osVersion</th>
+       <th width="5%">resolution</th>
+       <th width="5%">netType</th>
+       <th width="5%">carrier</th>
+       <th width="5%">device</th>
+       <th width="5%">version</th>
+       <th width="5%">sdkVersion</th>
+       <th width="5%">isPirated</th>
+       <th width="5%">platform</th>
+       <th width="5%">submitTime</th>
+       <th width="5%">remark</th>
+    </tr>
+</thead>
+<tbody>
+<volist name="list" id="vo">
+   <tr id="tr{$vo.id}">
+    <td>{$vo.id}</td>
+	<td>{$vo.udid}</td>
+	<td>{$vo.channelId}</td>
+	<td>{$vo.channelName}</td>
+	<td>{$vo.appKey}</td>
+	<td>{$vo.packageName}</td>
+	<td>{$vo.osVersion}</td>
+	<td>{$vo.resolution}</td>
+	<td>{$vo.netType}</td>
+	<td>{$vo.carrier}</td>
+	<td>{$vo.device}</td>
+	<td>{$vo.version}</td>
+	<td>{$vo.sdkVersion}</td>
+	<td>{$vo.isPirated}</td>
+	<td>{$vo.platform}</td>
+	<td>{$vo.submitTime}</td>
+	<td>{$vo.remark}</td>
+    <td align="center"></td>
+   </tr>
+</volist>
+</form>
+</tbody>
+<!--功能区-->
+<tfoot>
+<tr>
+<td colspan="6">
+<div class="pagination">
+{$page}
+</div> <!-- End .pagination -->
+<div class="clear"></div>
+</td>
+</tr>
+</tfoot>
+<!--功能区-->
+</table>
+    </div> 
+    <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+
+	<script language="javascript">
+		function submit() {
+			document.forms[0].submit();
+		}
+	</script>
+
+	<include file="Include:footer" />

@@ -1,0 +1,84 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+<script charset="utf-8" src="../Public/editor/kindeditor.js"></script>
+<script charset="utf-8" src="../Public/editor/lang/zh_CN.js"></script>
+<script>
+        var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#content');
+        });
+</script>
+<div class="content-box-header">
+    <h3>清理缓存</h3>
+    <div class="clear"></div>
+    
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+<form action="?m=Cache&a=del&platform={$_GET['platform']}" method="post"  name="form1" id="form1">
+
+<p>
+<label>首页缓存管理</label>
+<fieldset>
+<input type="checkbox" name="home[]"  value="round"/>首页轮播
+<input type="checkbox" name="home[]" value="topic"/>热门专题
+<input type="checkbox" name="home[]" value="game"/>热门游戏
+</fieldset></p>
+<p>
+<label>大厅缓存管理</label>
+<fieldset>
+<input type="checkbox" name="hot[]"  value="new"/>最新
+<input type="checkbox" name="hot[]" value="recommended"/>推荐
+<input type="checkbox" name="hot[]" value="rank"/>排行
+</fieldset></p>
+<p>
+<label>分类缓存管理</label>
+<fieldset>
+<input type="checkbox" name="category[]"  value="cate"/>分类
+<input type="checkbox" name="category[]"  value="cate_data"/>分类下的数据
+</fieldset></p>
+<p>
+<label>专题缓存管理</label>
+<fieldset>
+<input type="checkbox" name="topic[]"  value="topic"/>专题
+<input type="checkbox" name="topic[]"  value="topic_data"/>专题数据列表
+</fieldset></p>
+<p>
+<label>关键词缓存管理</label>
+<fieldset>
+<input type="checkbox" name="keyword"  value="keyword"/>关键词
+</fieldset></p>
+<p>
+<label>游戏数据缓存管理</label>
+<fieldset>
+<input type="text" class="text-input medium-input datepicker" name="game"  value=""/>游戏ID（多个游戏用逗号隔开）
+</fieldset></p>
+<p>
+<label>自定义缓存管理(缓存名称  gc_key_ios_10_1)支持批量，用逗号隔开</label>
+<fieldset>
+<input type="text" class="text-input medium-input datepicker" name="cache"  value=""/>
+</fieldset></p>
+<if condition="ios eq $_GET['platform']">
+<p>
+<label>IOS限免缓存管理</label>
+<fieldset>
+<input type="checkbox" name="limit"  value="limit"/>限免
+</fieldset></p>
+</if>
+<p>{$result}</p>
+<p><input class="button" type="submit" value="清理缓存" /></p>
+<div class="clear"></div><!-- End .clear -->
+</form>
+</div> <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+<include file="Include:footer" />

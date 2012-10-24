@@ -1,0 +1,108 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+
+<div class="content-box-header">
+    <h3>事件查看</h3>
+    <div class="clear"></div>
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+
+<form action="?m=Event&a=index" method="post" name="searchform">
+平台:
+<select name="platform">
+<option value ="0"></option>
+  <option value ="1">IOS</option>
+  <option value ="2">android</option>
+</select>
+<!-- 分割线 --> 
+| 
+支付类型:
+<select name="payType">
+  <option value ="0"></option>
+  <option value ="1">支付宝</option>
+  <option value ="2">银行卡</option>
+</select>
+<!-- 分割线 --> | 
+充值金额 ：
+<input type='text' id=amount/>
+<!--提交按钮-->	
+	<input class="button" type="submit" value="Submit" />
+	
+</form>
+<table width="100%">
+<thead>
+    <tr>
+       <th width="5%">ID</th>
+       <th width="10%">udid</th>
+	   <th width="5%">channelId</th>
+	   <th width="10%">appKey</th>
+	   <th width="5%">platform</th>
+       <th width="10%">submitTime</th>	   
+       <th width="10%">eventType</th>
+       <th width="10%">eventId</th>
+       <th width="10%">eventName</th>
+       <th width="10%">relationPage</th>
+       <th width="5%">count</th>
+       <th width="5%">startTime</th>
+       <th width="5%">endTime</th>
+       <th width="5%">remark</th>
+    </tr>
+</thead>
+<tbody>
+<volist name="list" id="vo">
+   <tr id="tr{$vo.id}">
+    <td>{$vo.id}</td>
+	<td>{$vo.udid}</td>
+	<td>{$vo.channelId}</td>
+	<td>{$vo.appKey}</td>
+	<td>{$vo.platform}</td>
+	<td>{$vo.submitTime}</td>
+	<td>{$vo.eventType}</td>
+	<td>{$vo.eventId}</td>
+	<td>{$vo.eventName}</td>
+	<td>{$vo.relationPage}</td>
+	<td>{$vo.count}</td>
+	<td>{$vo.startTime}</td>
+	<td>{$vo.endTime}</td>
+	<td>{$vo.remark}</td>
+    <td align="center"></td>
+   </tr>
+</volist>
+</form>
+</tbody>
+<!--功能区-->
+<tfoot>
+<tr>
+<td colspan="6">
+<div class="pagination">
+{$page}
+</div> <!-- End .pagination -->
+<div class="clear"></div>
+</td>
+</tr>
+</tfoot>
+<!--功能区-->
+</table>
+    </div> 
+    <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+
+	<script language="javascript">
+		function submit() {
+			document.forms[0].submit();
+		}
+	</script>
+	
+<include file="Include:footer" />

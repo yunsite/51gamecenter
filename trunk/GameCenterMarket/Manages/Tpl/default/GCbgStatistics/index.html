@@ -1,0 +1,156 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+ 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+<script>
+ $(document).ready(function() {
+	 var pickerOpts = {
+	         dateFormat: "yy-mm-dd"
+	        };
+
+    $("#starttime").datepicker(pickerOpts);
+    $("#endtime").datepicker(pickerOpts);
+  });
+ </script>
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+
+<div class="content-box-header">
+    <h3>分析查看</h3>
+    <div class="clear"></div>
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+
+<form action="?m=GCbgStatistics&a=index" method="post" name="searchform">
+
+&nbsp;&nbsp;&nbsp;渠  道:
+	<select name="channel">
+		<option value ="0" <if	condition="$_REQUEST['platform'] eq 0">selected</if>></option>
+  		<option value ="1" <if	condition="$_REQUEST['platform'] eq 1">selected</if>>渠道1</option>
+  		<option value ="2" <if	condition="$_REQUEST['platform'] eq 2">selected</if>>渠道2</option>
+	</select>
+	
+&nbsp;&nbsp;&nbsp;游  戏:
+	<select name="game">
+		<option value ="0" <if	condition="$_REQUEST['platform'] eq 0">selected</if>></option>
+  		<option value ="1" <if	condition="$_REQUEST['platform'] eq 1">selected</if>>游戏1</option>
+  		<option value ="2" <if	condition="$_REQUEST['platform'] eq 2">selected</if>>游戏2</option>
+	</select>
+	
+&nbsp;&nbsp;&nbsp;服务器:
+	<select name="server">
+		<option value ="0" <if	condition="$_REQUEST['platform'] eq 0">selected</if>></option>
+  		<option value ="1" <if	condition="$_REQUEST['platform'] eq 1">selected</if>>服务器1</option>
+  		<option value ="2" <if	condition="$_REQUEST['platform'] eq 2">selected</if>>服务器2</option>
+	</select>
+	<br>
+	<br>
+起始时间:<input id='starttime' name='starttime' value="{$_REQUEST['starttime']}"/>
+到
+<input id='endtime' name='endtime' value="{$_REQUEST['endtime']}" />
+<br>
+<br>
+充值时间:<input id='starttime' name='starttime' value="{$_REQUEST['starttime']}"/>
+到
+<input id='endtime' name='endtime' value="{$_REQUEST['endtime']}" />
+	
+<!--提交按钮-->	
+	<input class="button" type="submit" value="查询" />
+	&nbsp;&nbsp;&nbsp;
+	<br>
+	<br>
+	<input class="button" type="submit" value="前一天" />
+	<input class="button" type="submit" value="今天" />
+	<input class="button" type="submit" value="后一天" />
+	&nbsp;&nbsp;&nbsp;
+	<input class="button" type="submit" value="上一周" />
+	<input class="button" type="submit" value="最近一周" />
+	<input class="button" type="submit" value="下一周" />
+	
+</form>
+
+<table width="200%">
+<thead>
+    <tr>
+       <th width="6%">渠道id</th>
+       <th width="5%">渠道名</th>
+	   <th width="5%">终端联网人数</th>
+	   <th width="5%">注册人数</th>
+	   <th width="5%">激活人数</th>
+       <th width="5%">有效用户</th>	   
+       <th width="5%">无效用户</th>
+       <th width="5%">在线人数</th>
+       <th width="5%">二登人数</th>
+       <th width="5%">广告费用</th>
+       <th width="5%">二登成本</th>
+       <th width="5%">注册成本</th>
+       <th width="5%">激活成本</th>
+       <th width="5%">有效用户成本</th>
+       <th width="5%">激活转化率</th>
+       <th width="5%">注册转化率</th>
+       <th width="5%">充值人数</th>
+       <th width="5%">充值金额</th>
+       <th width="5%">投入回报率</th>
+    </tr>
+</thead>
+<tbody>
+<volist name="list" id="vo">
+   <tr id="tr{$vo.id}">
+    <td>{$vo.channelId}</td>
+	<td>{$vo.channelName}</td>
+	<td>{$vo.terminalOnLineNum}</td>
+	<td>{$vo.registerNum}</td>
+	<td>{$vo.activityNum}</td>
+	<td>{$vo.effectUserNum}</td>
+	<td>{$vo.unEffUserNum}</td>
+	<td>{$vo.onlineNum}</td>
+	<td>{$vo.twoLoginNum}</td>
+	<td>{$vo.advertisementCost}</td>
+	<td>{$vo.twoLoginCost}</td>
+	<td>{$vo.registerCost}</td>
+	<td>{$vo.activityCost}</td>
+	<td>{$vo.effectUserCost}</td>
+	<td>{$vo.activityEffect}</td>
+	<td>{$vo.registerEffect}</td>
+	<td>{$vo.payNum}</td>
+	<td>{$vo.moneyNum}</td>
+	<td>{$vo.paybackEffect}</td>
+    <td align="center"></td>
+   </tr>
+</volist>
+</form>
+</tbody>
+<!--功能区-->
+<tfoot>
+<tr>
+<td colspan="6">
+<div class="pagination">
+{$page}
+</div> <!-- End .pagination -->
+<div class="clear"></div>
+</td>
+</tr>
+</tfoot>
+<!--功能区-->
+</table>
+    </div> 
+    <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+
+	<script language="javascript">
+		function submit() {
+			document.forms[0].submit();
+		}
+	</script>
+
+	<include file="Include:footer" />
