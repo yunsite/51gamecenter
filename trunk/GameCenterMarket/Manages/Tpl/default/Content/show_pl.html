@@ -1,0 +1,95 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+
+<div class="content-box-header">
+    <h3>{$list2.title}的评论：</h3>
+    <div class="clear"></div>
+    
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+<table width="100%">
+<thead>
+    <tr>
+       <th width="5%"><input class="check-all" type="checkbox" /></th>
+       <th width="5%">ID</th>
+       <th width="30%">内容</th>
+       <th width="20%">评论时间</th>
+       <th width="30%">回复内容</th>
+       <th width="10%">操作</th>
+    </tr>
+</thead>
+<tbody>
+<form action="__URL__/dels_pl" method="post" name="delform1">
+<volist name="list" id="vo">
+   <tr id="tr{$vo.id}">
+    <td><input type="checkbox" name="dels[]" value="{$vo.id}"/></td>
+    <td align="center">{$vo.id}</td>
+    <td>{$vo.content}</td>
+    <td align="center">{$vo.inputtime}</td>
+    <td align="center">{$vo.callbank}</td>
+    <td align="center">
+    <!-- Icons -->
+    <a href="#callbank" rel="modal" title="回复" onclick="sendId({$vo.id});"><img src="../Public/images/icons/pencil.png" alt="Edit" /></a>
+    <a href="javascript:;" title="删除" onclick="del({$vo.id});"><img src="../Public/images/icons/cross.png" alt="Delete" /></a> 
+    <!--<a href="javascript:;" title="设置" onclick="sz({$vo.id});"><img src="../Public/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>-->
+    </td>
+   </tr>
+</volist>
+</form>
+</tbody>
+<!--功能区-->
+<tfoot>
+<tr>
+<td colspan="6">
+<div class="bulk-actions align-left">
+<select name="dropdown">
+<option value="">批量删除</option>
+</select>
+<a class="button" href="javascript:;" onclick="document.delform1.submit();">执行操作</a>
+</div>
+<div class="pagination">
+{$page}
+</div> <!-- End .pagination -->
+<div class="clear"></div>
+</td>
+</tr>
+</tfoot>
+<!--功能区-->
+</table>
+    </div> 
+    <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+<script language="javascript">
+function del(id){
+	$.get(
+		'__URL__/del_pl/id/'+id,
+		function(data){
+			if(data==1){
+				$('#success').show('slow');
+				$('#tr'+id).remove();
+			}else{
+				$('#success').hide('slow');
+				$('#error').show('slow');
+			}
+		}
+	);
+}
+function sendId(id){
+	document.getElementById("ids").value=id;
+}
+</script>
+
+<include file="Content:callbank" />
+<include file="Include:footer" />

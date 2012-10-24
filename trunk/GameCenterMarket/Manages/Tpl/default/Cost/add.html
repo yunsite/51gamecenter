@@ -1,0 +1,68 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+<script charset="utf-8" src="../Public/editor/kindeditor.js"></script>
+<script charset="utf-8" src="../Public/editor/lang/zh_CN.js"></script>
+<script>
+        var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#content');
+        });
+</script>
+<div class="content-box-header">
+    <h3>添加分类</h3>
+    <div class="clear"></div>
+    
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+<form action="__SELF__" method="post" name="form1" id="form1">
+<fieldset>
+<p>
+<label>渠道ID</label>
+<p>
+<select name="channelid">
+		<option value ="0" <if	condition="$_REQUEST['channelid'] eq 0">selected</if>></option>
+  		<option value ="1" <if	condition="$_REQUEST['channelid'] eq 1">selected</if>>渠道1</option>
+  		<option value ="2" <if	condition="$_REQUEST['channelid'] eq 2">selected</if>>渠道2</option>
+  		<option value ="3" <if	condition="$_REQUEST['channelid'] eq 2">selected</if>>渠道3</option>
+  		<option value ="4" <if	condition="$_REQUEST['channelid'] eq 2">selected</if>>渠道4</option>
+  		<option value ="5" <if	condition="$_REQUEST['channelid'] eq 2">selected</if>>渠道5</option>
+  		<option value ="6" <if	condition="$_REQUEST['channelid'] eq 2">selected</if>>渠道6</option>
+</select>
+<p>
+<label>游戏ID</label>
+<input class="text-input medium-input datepicker" type="text" id="appid" name="appid" value="{$list.appid}"/></p>
+<p>
+<label>时间</label>
+<input class="text-input medium-input datepicker" type="text" id="createtime" name="createtime" value="{$list.createtime}"/></p>
+<p>
+<label>花费</label>
+<input class="text-input medium-input datepicker" type="text" id="cost" name="cost" value="{$list.cost}"/></p>
+<p>
+<label>分类所属平台</label>
+<select name="platform">
+  <option value ="0">IOS</option>
+  <option value ="1">android</option>
+</select>
+<!--
+<label>分类所属平台</label>
+<input class="text-input medium-input datepicker" type="text" id="platform" name="platform" value="{$list.platform}"/>--></p>
+
+<p><input class="button" type="submit" value="Submit" /></p>
+</fieldset>
+<div class="clear"></div><!-- End .clear -->
+</form>
+    </div> 
+    <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+<include file="Include:footer" />

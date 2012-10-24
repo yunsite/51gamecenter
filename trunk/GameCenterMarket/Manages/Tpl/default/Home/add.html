@@ -1,0 +1,65 @@
+<include file="Include:header" />
+<include file="Include:menu" />
+</div>
+</div> <!-- End #sidebar -->
+<div id="main-content"> <!-- Main Content Section with everything -->
+<h2>欢迎您 {@username}</h2>
+<div class="clear"></div><!-- End .clear -->
+<div class="content-box"><!-- Start Content Box -->
+<script charset="utf-8" src="../Public/editor/kindeditor.js"></script>
+<script charset="utf-8" src="../Public/editor/lang/zh_CN.js"></script>
+<script>
+        var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#content');
+        });
+</script>
+<div class="content-box-header">
+    <h3>添加首页数据</h3>
+    <div class="clear"></div>
+    
+</div> <!-- End .content-box-header -->
+<div class="content-box-content">
+<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+<!--提示信息-->
+<include file="Include:tishi" />
+<!--提示信息-->
+<form action='__APP__?m=Home&a=add' method="post" name="form1" id="form1">
+<fieldset>
+<p>
+<label>图片地址</label>
+<input class="text-input medium-input datepicker" type="text" id="img" name="img" value="{$list.img}"/></p>
+<p>
+<label>文字介绍</label>
+<input class="text-input medium-input datepicker" type="text" id="title" name="title" value="{$list.title}"/></p>
+<p>
+<label>类型</label>
+<select name="type">
+  <option value ="0" selected>游戏</option>
+  <option value ="1" >专题</option>
+</select></p>
+<p>
+<label>记录ID(支持逗号隔开批量添加 例如 23,24,25,26)</label>
+<input class="text-input medium-input datepicker" type="text" id="t_id" name="t_id" value="{$list.t_id}"/></p>
+<p>
+<label>分类所属平台</label>
+<select name="platform">
+  <option value ="0" selected>IOS</option>
+  <option value ="1" >android</option>
+</select>
+<p>
+<label>位置</label>
+<select name="location">
+  <option value ="0" selected>顶部轮播</option>
+  <option value ="1" >热门游戏</option>
+  <option value ="2" >热门专题</option>
+</select></p>
+<p><input class="button" type="submit" value="Submit" /></p>
+</fieldset>
+<div class="clear"></div><!-- End .clear -->
+</form>
+    </div> 
+    <!-- End #tab1 -->
+</div> <!-- End .content-box-content -->
+</div>
+<include file="Include:footer" />
